@@ -13,6 +13,7 @@ It also enables farmers to **share and rent agricultural equipment**, reducing c
 FarmStack addresses two major challenges in agriculture:
 
 1️⃣ Farmers losing profits due to middlemen
+
 2️⃣ High cost of agricultural equipment
 
 FarmStack solves this by providing:
