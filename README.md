@@ -85,6 +85,17 @@ Customers can:
 * CSS
 * JavaScript
 * Vite
+### Backend 
+
+* Node.js
+
+* Express.js
+
+### Database
+
+* MongoDB
+
+* Mongoose
 
 ### Development Tools
 
