@@ -6,8 +6,6 @@ The platform removes middlemen, helping farmers **earn better profits** while al
 
 It also enables farmers to **share and rent agricultural equipment**, reducing costs and improving resource utilization.
 
----
-
 #  Project Overview
 
 FarmStack addresses two major challenges in agriculture:
@@ -21,8 +19,6 @@ FarmStack solves this by providing:
 * A **Farm-to-Customer Marketplace**
 * A **Farm Equipment Sharing Platform**
 
----
-
 #  Features
 
 ##  Direct Farm Marketplace
@@ -32,7 +28,7 @@ FarmStack solves this by providing:
 * Transparent pricing
 * Product ratings
 
-## 🚜 Equipment Sharing
+##  Equipment Sharing
 
 * Farmers list equipment for rent
 * Other farmers can request to rent equipment
@@ -50,8 +46,6 @@ FarmStack solves this by providing:
 * Customers rate farmers
 * Farmers rate equipment renters
 * Builds trust in the platform
-
----
 
 #  User Types
 
@@ -74,8 +68,6 @@ Customers can:
 * Buy fresh produce
 * View farmer profiles
 * Rate farmers
-
----
 
 #  Tech Stack
 
@@ -104,7 +96,6 @@ Customers can:
 * Git
 * GitHub
 
----
 
 #  Project Structure
 
@@ -125,8 +116,6 @@ FarmStack
 └── README.md
 ```
 
----
-
 #  Future Improvements
 
 Planned future features:
@@ -137,9 +126,7 @@ Planned future features:
 *  Notification system
 *  Farmer analytics dashboard
 *  AI crop price prediction
-
----
-
+  
 #  Project Goal
 
 The goal of FarmStack is to build a **digital agricultural ecosystem** that:
