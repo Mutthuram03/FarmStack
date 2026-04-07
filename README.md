@@ -1,4 +1,4 @@
-# 🌾 FarmStack
+#  FarmStack
 
 **FarmStack** is a platform that connects **farmers directly with customers** and enables **farm equipment sharing between farmers**.
 
@@ -8,13 +8,13 @@ It also enables farmers to **share and rent agricultural equipment**, reducing c
 
 ---
 
-# 🚀 Project Overview
+#  Project Overview
 
 FarmStack addresses two major challenges in agriculture:
 
-1️⃣ Farmers losing profits due to middlemen
+1️. Farmers losing profits due to middlemen
 
-2️⃣ High cost of agricultural equipment
+2. High cost of agricultural equipment
 
 FarmStack solves this by providing:
 
@@ -23,9 +23,9 @@ FarmStack solves this by providing:
 
 ---
 
-# ✨ Features
+#  Features
 
-## 🌽 Direct Farm Marketplace
+##  Direct Farm Marketplace
 
 * Farmers list crops directly
 * Customers buy fresh produce from farmers
@@ -39,13 +39,13 @@ FarmStack solves this by providing:
 * Reduces machinery costs
 * Improves equipment utilization
 
-## 📍 Location Based Search
+##  Location Based Search
 
 * Find farmers nearby
 * Discover equipment in your area
 * Location filtering
 
-## ⭐ Verified Ratings
+##  Verified Ratings
 
 * Customers rate farmers
 * Farmers rate equipment renters
@@ -53,7 +53,7 @@ FarmStack solves this by providing:
 
 ---
 
-# 👨‍🌾 User Types
+#  User Types
 
 ## Farmers
 
@@ -77,7 +77,7 @@ Customers can:
 
 ---
 
-# 🖥️ Tech Stack
+#  Tech Stack
 
 ### Frontend
 
@@ -106,7 +106,7 @@ Customers can:
 
 ---
 
-# 📂 Project Structure
+#  Project Structure
 
 ```
 FarmStack
@@ -127,20 +127,20 @@ FarmStack
 
 ---
 
-# 🌍 Future Improvements
+#  Future Improvements
 
 Planned future features:
 
-* 🗺️ Map-based farmer discovery
-* 💳 Payment integration
-* 📱 Mobile optimization
-* 🔔 Notification system
-* 📊 Farmer analytics dashboard
-* 🤖 AI crop price prediction
+*  Map-based farmer discovery
+*  Payment integration
+*  Mobile optimization
+*  Notification system
+*  Farmer analytics dashboard
+*  AI crop price prediction
 
 ---
 
-# 🎯 Project Goal
+#  Project Goal
 
 The goal of FarmStack is to build a **digital agricultural ecosystem** that:
 
@@ -149,11 +149,4 @@ The goal of FarmStack is to build a **digital agricultural ecosystem** that:
 * Encourages equipment sharing
 * Reduces dependency on intermediaries
 
----
-
-# 👨‍💻 Author
-
-**Mutthuram**
-
-⭐ **If you like this project, consider giving it a star on GitHub!**
 
