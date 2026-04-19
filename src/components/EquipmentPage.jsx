@@ -25,14 +25,18 @@ export const EquipmentPage = ({ onSelect }) => {
   return (
     <div className="page">
       <div className="page-title">Equipment Rental</div>
-      <div className="page-sub">Rent farm equipment from farmers near you — save big on purchases</div>
+      <div className="page-sub">Access modern farm machinery from verified owners in your district</div>
       <div className="search-bar">
         <div className="search-input-wrap">
-          <Icon name="search" color="#718096" />
+          <Icon name="search" size={20} color="var(--text-muted)" />
           <input className="search-input" placeholder="Search tractors, harvesters, sprayers..." value={search} onChange={e => setSearch(e.target.value)} />
         </div>
-        <input className="search-input" style={{ flex: "0 0 200px", padding: "12px 16px", border: "1.5px solid var(--border)", borderRadius: 10, outline: "none", fontFamily: "inherit", background: "var(--cream)" }} placeholder="📍 Filter by location..." value={location} onChange={e => setLocation(e.target.value)} />
-        <select className="filter-select" value={sort} onChange={e => setSort(e.target.value)}><option value="newest">Sort: Newest</option><option value="price-low">Price: Low-High</option><option value="price-high">Price: High-Low</option><option value="rating">Top Rated</option></select>
+        <select className="filter-select" value={sort} onChange={e => setSort(e.target.value)}>
+          <option value="newest">Sort: Newest First</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="rating">Top Rated</option>
+        </select>
       </div>
       <div className="cat-tabs">
         {CATEGORIES_EQ.map(c => <button key={c} className={`cat-tab ${cat === c ? "active" : ""}`} onClick={() => setCat(c)}>{c}</button>)}
@@ -43,23 +47,24 @@ export const EquipmentPage = ({ onSelect }) => {
         <div className="grid grid-4">
           {sorted.map(eq => (
             <div className="card" key={eq.id}>
-              <div className="card-img"><img src={eq.img} alt={eq.name} />
+              <div className="card-img">
+                <img src={eq.img} alt={eq.name} />
                 <div className={`card-badge ${eq.available ? "avail" : "unavail"}`}>{eq.available ? "Available" : "Booked"}</div>
               </div>
               <div className="card-body">
                 <div className="card-name">{eq.name}</div>
-                <div className="card-farmer"><Icon name="user" size={12} />{eq.owner}</div>
+                <div className="card-farmer"><Icon name="user" size={14} />{eq.owner}</div>
                 <div className="card-meta">
                   <div className="card-price">₹{eq.priceDay}<span>/day</span></div>
-                  <div className="card-rating"><Icon name="star" size={12} color="#f6ad55" />{eq.rating} ({eq.reviews})</div>
+                  <div className="card-rating"><Icon name="star" size={14} color="#f59e0b" />{eq.rating}</div>
                 </div>
-                <div className="card-location"><Icon name="map" size={12} />{eq.location}</div>
+                <div className="card-location"><Icon name="map" size={14} />{eq.location}</div>
               </div>
               <div className="card-footer">
-                <button className="card-btn card-btn-primary" disabled={!eq.available} style={{ opacity: eq.available ? 1 : 0.5 }} onClick={() => eq.available && onSelect(eq, "equipment")}>
+                <button className="card-btn card-btn-primary" disabled={!eq.available} style={{ opacity: eq.available ? 1 : 0.6 }} onClick={() => eq.available && onSelect(eq, "equipment")}>
                   📅 {eq.available ? "Book Now" : "Unavailable"}
                 </button>
-                <button className="card-btn card-btn-secondary" onClick={() => onSelect(eq, "equipment")}>Details</button>
+                <button className="card-btn card-btn-secondary" onClick={() => onSelect(eq, "equipment")}>View Details</button>
               </div>
             </div>
           ))}
