@@ -68,12 +68,12 @@ export const AuthPage = ({ onLogin, setToast, onClose }) => {
     <div className="auth-page" onClick={(e) => e.target === e.currentTarget && onClose && onClose()}>
       <div className="auth-card">
         {onClose && (
-          <button className="auth-close" onClick={onClose}>
-            <Icon name="close" size={20} />
+          <button className="modal-close" onClick={onClose} style={{ top: 32, right: 32 }}>
+            <Icon name="close" size={24} />
           </button>
         )}
-        <div className="auth-title">{isLogin ? "Welcome Back 🌾" : "Join FarmStack 🌱"}</div>
-        <div className="auth-sub">{isLogin ? "Sign in to your account" : "Create your free account today"}</div>
+        <h2 style={{ fontSize: '2.5rem', marginBottom: 8 }}>{isLogin ? "Welcome Back" : "Join the Community"}</h2>
+        <p className="page-sub" style={{ marginBottom: 40, fontSize: '1.1rem' }}>{isLogin ? "Sign in to access your FarmStack dashboard" : "Start connecting with farmers and customers today"}</p>
         
         {error && (
           <div style={{ 
@@ -105,9 +105,9 @@ export const AuthPage = ({ onLogin, setToast, onClose }) => {
           </div>
         )}
         
-        <div className="role-toggle">
-          <button className={`role-btn ${role === "farmer" ? "active" : ""}`} onClick={() => setRole("farmer")}>👨‍🌾 I'm a Farmer</button>
-          <button className={`role-btn ${role === "customer" ? "active" : ""}`} onClick={() => setRole("customer")}>🧑‍💼 I'm a Customer</button>
+        <div className="cat-tabs" style={{ marginBottom: 32 }}>
+          <button className={`cat-tab ${role === "farmer" ? "active" : ""}`} onClick={() => setRole("farmer")} style={{ flex: 1 }}>🧑‍🌾 I'm a Farmer</button>
+          <button className={`cat-tab ${role === "customer" ? "active" : ""}`} onClick={() => setRole("customer")} style={{ flex: 1 }}>🧑‍💼 I'm a Customer</button>
         </div>
         {!isLogin && (
           <div className="form-group">
@@ -129,9 +129,9 @@ export const AuthPage = ({ onLogin, setToast, onClose }) => {
             <input className="form-input" placeholder="e.g. Chengalpattu, Tamil Nadu" value={form.location} onChange={e => setForm({ ...form, location: e.target.value })} />
           </div>
         )}
-        <button className="auth-btn" onClick={handle}>{isLogin ? "Sign In" : "Create Account"}</button>
-        <div className="auth-switch">
-          {isLogin ? <>Don't have an account? <a onClick={() => setIsLogin(false)}>Sign Up</a></> : <>Already have an account? <a onClick={() => setIsLogin(true)}>Sign In</a></>}
+        <button className="btn btn-primary" onClick={handle} style={{ width: '100%', padding: 18, marginTop: 16 }}>{isLogin ? "Sign In to Dashboard" : "Register Now"}</button>
+        <div style={{ marginTop: 24, textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.95rem' }}>
+          {isLogin ? <>New to FarmStack? <a onClick={() => setIsLogin(false)} style={{ color: 'var(--primary)', fontWeight: 700, cursor: 'pointer', textDecoration: 'underline' }}>Create Account</a></> : <>Already a member? <a onClick={() => setIsLogin(true)} style={{ color: 'var(--primary)', fontWeight: 700, cursor: 'pointer', textDecoration: 'underline' }}>Sign In</a></>}
         </div>
       </div>
     </div>
