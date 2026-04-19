@@ -55,36 +55,38 @@ export const FarmerDashboard = ({ user, onLogout }) => {
 
   return (
     <div className="dashboard-layout">
-      <div className="sidebar">
+      <div className="sidebar shadow-lg">
         <div className="sidebar-user">
           <div className="sidebar-avatar">{user.avatar}</div>
-          <div className="sidebar-name">{user.name}</div>
-          <div className="sidebar-role">🌾 Farmer</div>
+          <h3 style={{ fontSize: '1.25rem', marginBottom: '4px' }}>{user.name}</h3>
+          <div style={{ color: 'var(--accent)', fontWeight: 700, fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Premium Farmer</div>
         </div>
         <div className="sidebar-nav">
           {sideItems.map(s => (
             <button key={s.key} className={`sidebar-item ${tab === s.key ? "active" : ""}`} onClick={() => setTab(s.key)}>
-              <Icon name={s.icon} size={16} />{s.label}
+              <Icon name={s.icon} size={20} />{s.label}
             </button>
           ))}
-          <button className="sidebar-item" onClick={onLogout} style={{ marginTop: 16, color: "#e53e3e" }}>
-            <Icon name="logout" size={16} color="#e53e3e" />Logout
-          </button>
+          <div style={{ marginTop: 'auto', paddingTop: '32px' }}>
+            <button className="sidebar-item" onClick={onLogout} style={{ color: "#ef4444" }}>
+              <Icon name="logout" size={20} color="#ef4444" />Sign Out
+            </button>
+          </div>
         </div>
       </div>
       <div className="dash-main">
         {tab === "overview" && (
           <>
-            <div style={{ marginBottom: 24 }}>
-              <div className="page-title">Good morning, {user.name.split(" ")[0]}! 🌤️</div>
-              <div className="page-sub">Here's what's happening on your farm today</div>
+            <div style={{ marginBottom: 48 }}>
+              <h1 className="page-title" style={{ fontSize: '2.5rem' }}>Good morning, {user.name.split(" ")[0]}!</h1>
+              <p className="page-sub" style={{ marginBottom: 0 }}>Here's an overview of your farm's performance today.</p>
             </div>
             <div className="dash-stats">
               {[
-                { icon: "🌽", num: crops.length, label: "Crops Listed" },
-                { icon: "🚜", num: equipment.length, label: "Equipment Listed" },
-                { icon: "📦", num: orders.length, label: "Total Orders" },
-                { icon: "💰", num: "₹1,075", label: "This Week" },
+                { icon: "📦", num: crops.length, label: "Active Crops" },
+                { icon: "🚜", num: equipment.length, label: "Equipment" },
+                { icon: "🛒", num: orders.length, label: "New Orders" },
+                { icon: "📈", num: "₹1,075", label: "Weekly Revenue" },
               ].map(s => (
                 <div className="stat-card" key={s.label}>
                   <div className="stat-card-icon">{s.icon}</div>
@@ -93,49 +95,52 @@ export const FarmerDashboard = ({ user, onLogout }) => {
                 </div>
               ))}
             </div>
-            <div className="dash-section">
-              <div className="dash-section-title">Recent Orders</div>
-              <table className="table">
-                <thead><tr><th>Order ID</th><th>Product</th><th>Customer</th><th>Amount</th><th>Status</th></tr></thead>
-                <tbody>
-                  {orders.map(o => (
-                    <tr key={o.id}>
-                      <td style={{ fontFamily: "monospace", color: "var(--green-mid)" }}>{o.id}</td>
-                      <td>{o.product}</td>
-                      <td>{o.customer}</td>
-                      <td style={{ fontWeight: 700 }}>{o.amount}</td>
-                      <td><span className={`status-pill status-${o.status.toLowerCase()}`}>{o.status}</span></td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <div className="dash-section" style={{ marginTop: 64 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
+                <h3 className="section-title" style={{ fontSize: '1.75rem', marginBottom: 0 }}>Recent Orders</h3>
+                <button className="btn btn-secondary" onClick={() => setTab("orders")}>View All</button>
+              </div>
+              <div className="table-wrap">
+                <table className="table">
+                  <thead><tr><th>Order ID</th><th>Product</th><th>Customer</th><th>Amount</th><th>Status</th></tr></thead>
+                  <tbody>
+                    {orders.map(o => (
+                      <tr key={o.id}>
+                        <td style={{ fontFamily: "monospace", color: "var(--primary)", fontWeight: 700 }}>{o.id}</td>
+                        <td>{o.product}</td>
+                        <td>{o.customer}</td>
+                        <td style={{ fontWeight: 800 }}>{o.amount}</td>
+                        <td><span className={`status-pill status-${o.status.toLowerCase()}`}>{o.status}</span></td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </>
         )}
 
         {tab === "crops" && (
           <>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
-              <div><div className="page-title">My Crop Listings</div></div>
-              <button className="submit-btn" onClick={() => setShowAddCrop(!showAddCrop)}><Icon name="plus" size={14} color="white" /> Add Crop</button>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 48 }}>
+              <div><h2 className="page-title">My Crop Listings</h2></div>
+              <button className="btn btn-primary" onClick={() => setShowAddCrop(!showAddCrop)}><Icon name="plus" size={18} /> Add New Crop</button>
             </div>
             {showAddCrop && (
-              <div className="add-form">
-                <div className="add-form-title">➕ List a New Crop</div>
-                <div className="form-row">
+              <div className="card glass" style={{ padding: 48, marginBottom: 48, border: '1px solid var(--primary)' }}>
+                <h3 style={{ marginBottom: 32, fontSize: '1.5rem' }}>➕ List a New Crop</h3>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 24, marginBottom: 32 }}>
                   <div className="form-group"><label className="form-label">Crop Name</label><input className="form-input" placeholder="e.g. Organic Tomatoes" value={newCrop.name} onChange={e => setNewCrop({ ...newCrop, name: e.target.value })} /></div>
-                  <div className="form-group"><label className="form-label">Category</label><select className="form-select" value={newCrop.category} onChange={e => setNewCrop({ ...newCrop, category: e.target.value })}>{CATEGORIES_CROP.slice(1).map(c => <option key={c}>{c}</option>)}</select></div>
+                  <div className="form-group"><label className="form-label">Category</label><select className="form-input" value={newCrop.category} onChange={e => setNewCrop({ ...newCrop, category: e.target.value })}>{CATEGORIES_CROP.slice(1).map(c => <option key={c}>{c}</option>)}</select></div>
                   <div className="form-group"><label className="form-label">Price (₹)</label><input className="form-input" type="number" placeholder="45" value={newCrop.price} onChange={e => setNewCrop({ ...newCrop, price: e.target.value })} /></div>
-                  <div className="form-group"><label className="form-label">Unit</label><select className="form-select" value={newCrop.unit} onChange={e => setNewCrop({ ...newCrop, unit: e.target.value })}><option>kg</option><option>dozen</option><option>bunch</option><option>piece</option><option>quintal</option></select></div>
+                  <div className="form-group"><label className="form-label">Unit</label><select className="form-input" value={newCrop.unit} onChange={e => setNewCrop({ ...newCrop, unit: e.target.value })}><option>kg</option><option>dozen</option><option>bunch</option><option>piece</option><option>quintal</option></select></div>
                   <div className="form-group"><label className="form-label">Quantity</label><input className="form-input" type="number" placeholder="200" value={newCrop.qty} onChange={e => setNewCrop({ ...newCrop, qty: e.target.value })} /></div>
                   <div className="form-group"><label className="form-label">Location</label><input className="form-input" placeholder="District, State" value={newCrop.location} onChange={e => setNewCrop({ ...newCrop, location: e.target.value })} /></div>
-                  <div className="form-group">
-                    <label className="form-label">Product Image</label>
-                    <input className="form-input" type="file" accept="image/*" onChange={handleCropImageUpload} />
-                  </div>
-                  <div className="form-group"><label className="form-label">Image URL (optional)</label><input className="form-input" placeholder="https://..." value={newCrop.img} onChange={e => setNewCrop({ ...newCrop, img: e.target.value })} /></div>
                 </div>
-                <button className="submit-btn" onClick={addCrop}>✅ Publish Listing</button>
+                <div style={{ display: 'flex', gap: 16 }}>
+                  <button className="btn btn-primary" onClick={addCrop} style={{ flex: 1 }}>✅ Publish Listing</button>
+                  <button className="btn btn-outline" onClick={() => setShowAddCrop(false)}>Cancel</button>
+                </div>
               </div>
             )}
             <div className="grid grid-4">
@@ -161,26 +166,24 @@ export const FarmerDashboard = ({ user, onLogout }) => {
 
         {tab === "equipment" && (
           <>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
-              <div><div className="page-title">My Equipment</div></div>
-              <button className="submit-btn" onClick={() => setShowAddEq(!showAddEq)}><Icon name="plus" size={14} color="white" /> Add Equipment</button>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 48 }}>
+              <div><h2 className="page-title">My Equipment</h2></div>
+              <button className="btn btn-primary" onClick={() => setShowAddEq(!showAddEq)}><Icon name="plus" size={18} /> Add New Equipment</button>
             </div>
             {showAddEq && (
-              <div className="add-form">
-                <div className="add-form-title">➕ List Equipment for Rent</div>
-                <div className="form-row">
+              <div className="card glass" style={{ padding: 48, marginBottom: 48, border: '1px solid var(--primary)' }}>
+                <h3 style={{ marginBottom: 32, fontSize: '1.5rem' }}>➕ List Equipment for Rent</h3>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 24, marginBottom: 32 }}>
                   <div className="form-group"><label className="form-label">Equipment Name</label><input className="form-input" placeholder="e.g. John Deere Tractor" value={newEq.name} onChange={e => setNewEq({ ...newEq, name: e.target.value })} /></div>
-                  <div className="form-group"><label className="form-label">Category</label><select className="form-select" value={newEq.category} onChange={e => setNewEq({ ...newEq, category: e.target.value })}>{CATEGORIES_EQ.slice(1).map(c => <option key={c}>{c}</option>)}</select></div>
+                  <div className="form-group"><label className="form-label">Category</label><select className="form-input" value={newEq.category} onChange={e => setNewEq({ ...newEq, category: e.target.value })}>{CATEGORIES_EQ.slice(1).map(c => <option key={c}>{c}</option>)}</select></div>
                   <div className="form-group"><label className="form-label">Daily Rate (₹)</label><input className="form-input" type="number" placeholder="2500" value={newEq.priceDay} onChange={e => setNewEq({ ...newEq, priceDay: e.target.value })} /></div>
                   <div className="form-group"><label className="form-label">Hourly Rate (₹)</label><input className="form-input" type="number" placeholder="350" value={newEq.priceHour} onChange={e => setNewEq({ ...newEq, priceHour: e.target.value })} /></div>
                   <div className="form-group"><label className="form-label">Location</label><input className="form-input" placeholder="District, State" value={newEq.location} onChange={e => setNewEq({ ...newEq, location: e.target.value })} /></div>
-                  <div className="form-group">
-                    <label className="form-label">Equipment Image</label>
-                    <input className="form-input" type="file" accept="image/*" onChange={handleEquipmentImageUpload} />
-                  </div>
-                  <div className="form-group"><label className="form-label">Image URL (optional)</label><input className="form-input" placeholder="https://..." value={newEq.img} onChange={e => setNewEq({ ...newEq, img: e.target.value })} /></div>
                 </div>
-                <button className="submit-btn" onClick={() => { if (!newEq.name) return; setEquipment([...equipment, { ...newEq, id: Date.now(), owner: user.name, ownerId: 1, rating: 4.5, reviews: 0, img: newEq.img || DEFAULT_EQUIPMENT_IMAGE, available: true, desc: "Newly listed equipment." }]); setNewEq({ name: "", priceDay: "", priceHour: "", category: "Tractor", location: "", img: "" }); setShowAddEq(false); }}>✅ Publish</button>
+                <div style={{ display: 'flex', gap: 16 }}>
+                  <button className="btn btn-primary" onClick={() => { if (!newEq.name) return; setEquipment([...equipment, { ...newEq, id: Date.now(), owner: user.name, ownerId: 1, rating: 4.5, reviews: 0, img: newEq.img || DEFAULT_EQUIPMENT_IMAGE, available: true, desc: "Newly listed equipment." }]); setNewEq({ name: "", priceDay: "", priceHour: "", category: "Tractor", location: "", img: "" }); setShowAddEq(false); }} style={{ flex: 1 }}>✅ Publish Equipment</button>
+                  <button className="btn btn-outline" onClick={() => setShowAddEq(false)}>Cancel</button>
+                </div>
               </div>
             )}
             <div className="grid grid-4">
@@ -206,45 +209,49 @@ export const FarmerDashboard = ({ user, onLogout }) => {
 
         {tab === "orders" && (
           <div className="dash-section">
-            <div className="dash-section-title">All Orders Received</div>
-            <table className="table">
-              <thead><tr><th>Order ID</th><th>Product</th><th>Customer</th><th>Qty</th><th>Amount</th><th>Date</th><th>Status</th></tr></thead>
-              <tbody>
-                {orders.map(o => (
-                  <tr key={o.id}>
-                    <td style={{ fontFamily: "monospace", color: "var(--green-mid)" }}>{o.id}</td>
-                    <td>{o.product}</td>
-                    <td>{o.customer}</td>
-                    <td>{o.qty}</td>
-                    <td style={{ fontWeight: 700 }}>{o.amount}</td>
-                    <td>{o.date}</td>
-                    <td><span className={`status-pill status-${o.status.toLowerCase()}`}>{o.status}</span></td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <h2 className="page-title" style={{ marginBottom: 48 }}>Recent Orders</h2>
+            <div className="table-wrap">
+              <table className="table">
+                <thead><tr><th>Order ID</th><th>Product</th><th>Customer</th><th>Qty</th><th>Amount</th><th>Date</th><th>Status</th></tr></thead>
+                <tbody>
+                  {orders.map(o => (
+                    <tr key={o.id}>
+                      <td style={{ fontFamily: "monospace", color: "var(--primary)", fontWeight: 700 }}>{o.id}</td>
+                      <td>{o.product}</td>
+                      <td>{o.customer}</td>
+                      <td>{o.qty}</td>
+                      <td style={{ fontWeight: 800 }}>{o.amount}</td>
+                      <td>{o.date}</td>
+                      <td><span className={`status-pill status-${o.status.toLowerCase()}`}>{o.status}</span></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         )}
 
         {tab === "rentals" && (
           <div className="dash-section">
-            <div className="dash-section-title">Rental Bookings</div>
-            <table className="table">
-              <thead><tr><th>Rental ID</th><th>Equipment</th><th>Renter</th><th>Duration</th><th>Amount</th><th>Date</th><th>Status</th></tr></thead>
-              <tbody>
-                {rentals.map(r => (
-                  <tr key={r.id}>
-                    <td style={{ fontFamily: "monospace", color: "var(--green-mid)" }}>{r.id}</td>
-                    <td>{r.equipment}</td>
-                    <td>{r.renter}</td>
-                    <td>{r.days}</td>
-                    <td style={{ fontWeight: 700 }}>{r.amount}</td>
-                    <td>{r.date}</td>
-                    <td><span className={`status-pill status-${r.status.toLowerCase()}`}>{r.status}</span></td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <h2 className="page-title" style={{ marginBottom: 48 }}>Rental Bookings</h2>
+            <div className="table-wrap">
+              <table className="table">
+                <thead><tr><th>Rental ID</th><th>Equipment</th><th>Renter</th><th>Duration</th><th>Amount</th><th>Date</th><th>Status</th></tr></thead>
+                <tbody>
+                  {rentals.map(r => (
+                    <tr key={r.id}>
+                      <td style={{ fontFamily: "monospace", color: "var(--primary)", fontWeight: 700 }}>{r.id}</td>
+                      <td>{r.equipment}</td>
+                      <td>{r.renter}</td>
+                      <td>{r.days}</td>
+                      <td style={{ fontWeight: 800 }}>{r.amount}</td>
+                      <td>{r.date}</td>
+                      <td><span className={`status-pill status-${r.status.toLowerCase()}`}>{r.status}</span></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         )}
       </div>
