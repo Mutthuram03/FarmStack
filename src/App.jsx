@@ -23,6 +23,11 @@ export default function App() {
   const [user, setUser] = useState(null);
   const [modal, setModal] = useState(null);
   const [toast, setToast] = useState(null);
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
 
   useEffect(() => {
     if (user) return;
@@ -82,14 +87,20 @@ export default function App() {
           ))}
         </div>
         <div className="nav-actions">
+          <button 
+            className="theme-toggle" 
+            onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+          >
+            {theme === 'light' ? "🌙" : "☀️"}
+          </button>
           {user ? (
-            <button className="btn-nav btn-primary" onClick={() => setPage(user.role === "farmer" ? "farmer-dashboard" : "customer-dashboard")}>
+            <button className="btn btn-primary" onClick={() => setPage(user.role === "farmer" ? "farmer-dashboard" : "customer-dashboard")}>
               {user.avatar} Dashboard
             </button>
           ) : (
             <>
-              <button className="btn-nav btn-outline" onClick={() => setPage("auth")}>Login</button>
-              <button className="btn-nav btn-primary" onClick={() => setPage("auth")}>Sign Up</button>
+              <button className="btn btn-outline" onClick={() => setPage("auth")}>Login</button>
+              <button className="btn btn-primary" onClick={() => setPage("auth")}>Sign Up</button>
             </>
           )}
         </div>
