@@ -81,13 +81,11 @@ Customers can:
 ### Backend 
 
 * Node.js
-
 * Express.js
 
 ### Database
 
 * MongoDB
-
 * Mongoose
 
 ### Development Tools
@@ -119,7 +117,6 @@ FarmStack
 #  Future Improvements
 
 Planned future features:
-
 *  Map-based farmer discovery
 *  Payment integration
 *  Mobile optimization
