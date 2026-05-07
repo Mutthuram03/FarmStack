@@ -132,5 +132,6 @@ The goal of FarmStack is to build a **digital agricultural ecosystem** that:
 * Provides fresh farm produce to customers
 * Encourages equipment sharing
 * Reduces dependency on intermediaries
-
+# Author
+Mutthuram S R
 
